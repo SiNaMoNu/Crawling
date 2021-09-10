@@ -81,14 +81,7 @@ def btn1cmd():
     txt_file= Text(txt_frame, height=15, yscrollcommand=scrollbar.set)
     txt_file.pack(side="left",  expand=True, fill="both")
     scrollbar.config(command=txt_file.yview)
-    txt_file.insert(END," \n\n\n\n 원하는 키워드를 입력하시고 크롤링 버튼을 눌러주시면 1차 크롤링이 진행됩니다. \n\n 크롤링된 기사들의 제목을 바탕으로 연관된 추천키워드를 제시합니다. \n\n 재크롤링 버튼을 눌러주시면 추천키워드로 재크롤링이 진행됩니다.")    
-    
-    def open_file():
-        if os.path.isfile(filename): # 파일 있으면 True, 없으면 False
-             with open(filename, "r", encoding="utf8") as file:
-                 txt_file.delete("1.0", END) # 텍스트 위젯 본문 삭제
-                 txt_file.insert(END, file.read())
-    Label(root, text="<연관 키워드 추출 후 재크롤링>").pack()
+    txt_file.insert(END," \n\n\n\n 원하는 키워드를 입력하시고 크롤링 버튼을 눌러주시면 1차 크롤링이 진행됩니다. \n\n 크롤링된 기사들의 제목을 바탕으로 연관된 추천키워드를 제시합니다. \n\n 재크롤링 버튼을 눌러주시면 추천키워드로 재크롤링이 진행됩니다.")
     
     input_frame = LabelFrame(root)
     input_frame.pack(fill="x", padx=7, pady=10)
@@ -138,12 +131,6 @@ def btn2cmd():
     txt_file.pack(side="left",  expand=True, fill="both")
     scrollbar.config(command=txt_file.yview)
     txt_file.insert(END, " \n\n\n\n\n\n 원하시는 날짜를 설정해주시고 크롤링 버튼을 눌러주세요. \n\n 해당 날짜의 모든 뉴스들을 주제별로 나누어 엑셀 파일로 저장합니다. ")    
-    
-    def open_file():
-        if os.path.isfile(filename): # 파일 있으면 True, 없으면 False
-             with open(filename, "r", encoding="utf8") as file:
-                 txt_file.delete("1.0", END) # 텍스트 위젯 본문 삭제
-                 txt_file.insert(END, file.read())
     
     Label(root, text="<선택 날짜의 모든 뉴스 제목, 언론사, 링크 엑셀파일로 저장>").pack()
 
@@ -214,12 +201,6 @@ def btn3cmd():
     txt_file.pack(side="left",  expand=True, fill="both")
     scrollbar.config(command=txt_file.yview)
     txt_file.insert(END, " \n\n\n\n\n\n 키워드를 입력해주시고 크롤링을 시작할 페이지와 마지막 페이지를 설정해주세요. \n\n <크롤링 & 시각화> 버튼을 누르면 크롤링 내용을 csv 파일로 저장합니다. \n\n 이 중 언론사의 비율을 시각화해서 나타내줍니다.")    
-    
-    def open_file():
-        if os.path.isfile(filename): # 파일 있으면 True, 없으면 False
-             with open(filename, "r", encoding="utf8") as file:
-                 txt_file.delete("1.0", END) # 텍스트 위젯 본문 삭제
-                 txt_file.insert(END, file.read())
 
     Label(root, text="< 크롤링 결과 csv로 저장 후 언론사별 시각화 >").pack()
 
