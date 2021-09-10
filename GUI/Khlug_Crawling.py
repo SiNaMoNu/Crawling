@@ -162,11 +162,9 @@ def btn1cmd():
         KEYWORD = keyword_txt.get()
         PAGE = int(page_combobox.get())
         change()
-        sys.stdout = open('크롤링.txt', 'w')
         if __name__ == "__main__" :
             rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
             fin()
-        sys.stdout.close()
         morpheme()
         with open("결과값.txt",'r') as f:
             text = f.read()
@@ -174,7 +172,7 @@ def btn1cmd():
             m = b.findall("alpha".join (text.split('\n')[0:2]))
             a=' '.join(m) 
             f.close()
-        rekeyword_txt.insert(a)
+        rekeyword_txt.insert("{}".format(a))
         open_file() 
 
 
