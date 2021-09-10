@@ -2,13 +2,13 @@ import time
 import tkinter.ttk as ttk
 from tkinter import *
 import os
-from sid_crawling import * 
-from keyword_crawling import *
 import tkinter.messagebox as msgbox
-from recrawling1 import *
-from excel_crawling import *
-from visualization_crawling import * 
 import platform
+from Crawling_Theme import * 
+from Crawling_Keyword import *
+from Recrawling import *
+from Crawling_Excel import *
+from Crawling_Visualization import * 
 
 root = Tk()
 root.title("CRAWLING GUI") 
