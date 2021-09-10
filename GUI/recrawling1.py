@@ -2,27 +2,14 @@ from konlpy.tag  import Okt
 import requests
 from bs4 import BeautifulSoup
 
-
-
-####################################################################################################################################
-
-
 filename = "keyword.txt"
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36 Edg/91.0.864.64"}
-
-
-
-
-
-
 
 def create_soup(url) :
     res = requests.get(url, headers=headers)
     res.raise_for_status()
     soup = BeautifulSoup(res.text, "lxml")
     return soup
-
-
 
 def scrape_1page(KEYWORD) :
     url = "https://search.naver.com/search.naver?where=news&sm=tab_pge&query="+ KEYWORD+"&sort=0&photo=0&field=0&pd=0&ds=&de=&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:r,p:all,a:all&start=1"  
@@ -37,7 +24,6 @@ def scrape_1page(KEYWORD) :
             press.append(press_pick)
 
         print(title)
-      
 
 def create_soup(url) :
     res = requests.get(url, headers=headers)
@@ -63,7 +49,7 @@ def rescrape_news_keyword(KEYWORD, PAGE):
                         press.append(press_pick)
                     
                     
-                    file.write("{}. {}".format(index+1, title)+"\n"+"   링크 : {}".format(link) + "\n" + "   언론사 : {}".format(press) + "\n")
+                    file.write("{}. {}".format(index+1, title) + "\n")
         elif PAGE > 1 :
             url = "https://search.naver.com/search.naver?where=news&sm=tab_pge&query=" + KEYWORD + "&sort=0&photo=0&field=0&pd=0&ds=&de=&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:r,p:all,a:all&start=1"  
 
@@ -78,7 +64,7 @@ def rescrape_news_keyword(KEYWORD, PAGE):
                     press.append(press_pick)
                     
                     
-                file.write("{}. {}".format(index+1, title)+"\n"+"   링크 : {}".format(link) + "\n" + "   언론사 : {}".format(press) + "\n")
+                file.write("{}. {}".format(index+1, title) + "\n")
 
             page_index = 10
                 
@@ -96,13 +82,8 @@ def rescrape_news_keyword(KEYWORD, PAGE):
 
                     page_index = page_index + 1
 
-                    file.write("{}. {}".format(page_index, title)+"\n"+"   링크 : {}".format(link) + "\n" + "   언론사 : {}".format(press) + "\n")
+                    file.write("{}. {}".format(index+1, title) + "\n")
                 
-
-
-
-
-
 def morpheme():
     okt=Okt()
     word_dic={}
