@@ -9,6 +9,7 @@ import tkinter.messagebox as msgbox
 from recrawling1 import *
 from excel_crawling import *
 from visualization_crawling import * 
+import platform
 
 
 root = Tk()
@@ -331,10 +332,20 @@ def btn3cmd():
     page_combobox2.current(0)
     page_combobox2.pack(side="left",padx=7, pady=5)
 
+    
+
+
     def btncmd():
         query = keyword_txt.get()
         page1 = int(page_combobox.get()) 
         page2 = int(page_combobox2.get())
+        if platform.system() == 'Windows':
+            plt.rc('font', family='Malgun Gothic') 
+            plt.rcParams['axes.unicode_minus'] = False #한글 폰트 사용시 마이너스 폰트 깨짐 해결
+
+        elif platform.system() == 'Darwin': #맥
+            plt.rc('font', family='AppleGothic') 
+            plt.rcParams['axes.unicode_minus'] = False #한글 폰트 사용시 마이너스 폰트 깨짐 해결
         firstlastscrape(query,page1 ,page2)
 
     # 크롤링 버튼
@@ -496,7 +507,7 @@ def btn5cmd():
     txt_file= Text(txt_frame, height=15, yscrollcommand=scrollbar.set)
     txt_file.pack(side="left",  expand=True, fill="both")
     scrollbar.config(command=txt_file.yview)
-    txt_file.insert(END, "ㅋ")    
+    txt_file.insert(END, " \n\n\n\n\n 크롤링을 원하는 키워드와 페이지 수를 입력해 주세요. \n\n 크롤링 버튼을 누르시면 위 텍스트 창에 기사 제목, 링크, 언론사가 출력됩니다. ")    
     
     def open_file():
         if os.path.isfile(filename): # 파일 있으면 True, 없으면 False
