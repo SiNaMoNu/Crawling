@@ -167,7 +167,7 @@ def btn1cmd():
             fin()
         okt=Okt()
         word_dic={}
-        f=open(filename, 'r')
+        f=open(filename, 'r', encoding="utf8")
         g=''
         while True:
             line = f.readline()
@@ -188,10 +188,10 @@ def btn1cmd():
         for word, count in keys[:50]:
             a += "{0}. {1}({2})\n".format(number,word, count)
             number+=1
-        f = open("결과값.txt", 'w')
+        f = open("결과값.txt", 'w', encoding="utf8")
         f.write(a)
         f.close()
-        with open("결과값.txt",'r') as f:
+        with open("결과값.txt",'r', encoding="utf8") as f:
             text = f.read()
             b = re.compile('[가-힣]+')
             m = b.findall("alpha".join (text.split('\n')[0:2]))
