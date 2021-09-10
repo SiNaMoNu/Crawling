@@ -197,7 +197,7 @@ def btn1cmd():
             m = b.findall("alpha".join (text.split('\n')[0:2]))
             a=' '.join(m) 
             f.close()
-        rekeyword_txt.insert(a)
+        rekeyword_txt.insert(END, a)
         open_file() 
 
 
@@ -206,9 +206,9 @@ def btn1cmd():
         PAGE = int(page_combobox.get())
         change()
         if __name__ == "__main__" :
-            rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
+            scrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
+            open_file()
             fin()
-        open_file()
 
     # 크롤링 버튼
     btn_frame = Frame(root)
