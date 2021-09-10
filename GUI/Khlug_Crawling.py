@@ -2,7 +2,6 @@ import time
 import tkinter.ttk as ttk
 from tkinter import *
 import os
-from konlpy.tag  import Okt
 from sid_crawling import * 
 from keyword_crawling import *
 import tkinter.messagebox as msgbox
@@ -11,15 +10,12 @@ from excel_crawling import *
 from visualization_crawling import * 
 import platform
 
-
 root = Tk()
 root.title("CRAWLING GUI") 
 root.geometry("640x740+700+200")
 root.resizable(False, False) # 너비, 높이 값 변경 불가 -> 창 크기 변경 불가, 최소화도 안됨
 
 filename = "keyword.txt"
-
-
 
 def fin():
     msgbox.showinfo("알림", "크롤링이 끝났습니다.")
@@ -30,15 +26,10 @@ def warn_sid1():
 def warn_sid2():
     msgbox.showwarning("경고", "잘못된 하위주제를 입력하셨습니다.")
 
-
-
-
 def clear():
     mylist = root.pack_slaves()
     for i in mylist:
         i.destroy()
-
-
 
 def initial_state():
     def change():
@@ -50,7 +41,6 @@ def initial_state():
     first_label.pack()
     initial_button()
     change()
-
 
 def initial_button():
     btn_frame1 = LabelFrame(root, text="심화")
@@ -73,7 +63,6 @@ def initial_button():
 
     btn2 = Button(btn_frame2, text="키워드 크롤링", height=5, width=20, command=btn5cmd)
     btn2.pack(side="right", padx=27)
-
 
 def btn1cmd():
     clear()
@@ -131,71 +120,6 @@ def btn1cmd():
 
     rekeyword_txt = Entry(output_frame, width=40)
     rekeyword_txt.pack()
-
-    # def btncmd():
-    #     KEYWORD = keyword_txt.get()
-    #     PAGE = int(page_combobox.get())
-    #     change()
-    #     if __name__ == "__main__" :
-    #         rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
-    #         fin()
-    #     okt=Okt()
-    #     word_dic={}
-    #     f=open(filename, 'r', encoding="utf8")
-    #     g=''
-    #     while True:
-    #         line = f.readline()
-    #         line = line.replace(line.split(' ')[0]+' ','')
-    #         if not line: break
-    #         g+=line
-    #     f.close()
-
-    #     g = okt.pos(g)
-    #     for taeso, pumsa in g:
-    #         if pumsa == "Noun":
-    #             if not (taeso in word_dic):
-    #                 word_dic[taeso] = 0
-    #             word_dic[taeso]+=1
-
-    #     a, number = '', 1
-    #     keys = sorted(word_dic.items(), key=lambda x:x[1], reverse=True)
-    #     for word, count in keys[:50]:
-    #         a += "{0}. {1}({2})\n".format(number,word, count)
-    #         number+=1
-    #     f = open("결과값.txt", 'w', encoding="utf8")
-    #     f.write(a)
-    #     f.close()
-    #     with open("결과값.txt",'r', encoding="utf8") as f:
-    #         text = f.read()
-    #         b = re.compile('[가-힣]+')
-    #         m = b.findall("alpha".join (text.split('\n')[0:2]))
-    #         a=' '.join(m) 
-    #         f.close()
-    #     rekeyword_txt.insert(END, a)
-    #     open_file() 
-
-
-    # def rebtncmd():
-    #     KEYWORD = rekeyword_txt.get()
-    #     PAGE = int(page_combobox.get())
-    #     change()
-    #     if __name__ == "__main__" :
-    #         scrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
-    #         open_file()
-    #         fin()
-
-    # # 크롤링 버튼
-    # btn_frame = Frame(root)
-    # btn_frame.pack(fill="x", padx=7, pady=10)
-    
-    # #1차 크롤링 버튼
-    # btn1 = Button(btn_frame, text="크롤링",height=5, width=15, command=btncmd)
-    # btn1.pack(side="left", padx=27)
-
-    # #2차 크롤링 버튼
-    # btn1 = Button(btn_frame, text="재 크롤링",height=5, width=15, command=rebtncmd)
-    # btn1.pack(side="right", padx=27)
-
     
 def btn2cmd():
     clear()
@@ -222,7 +146,6 @@ def btn2cmd():
                  txt_file.insert(END, file.read())
     
     Label(root, text="<선택 날짜의 모든 뉴스 제목, 언론사, 링크 엑셀파일로 저장>").pack()
-
 
     input_frame = LabelFrame(root, text="엑셀로 저장")
     input_frame.pack(fill="x", padx=7, pady=5)
@@ -273,7 +196,6 @@ def btn2cmd():
     #1차 크롤링 버튼
     btn1 = Button(btn_frame, text="크롤링",height=5, width=15, command=btncmd)
     btn1.pack()
-
 
 def btn3cmd():
     clear()
@@ -332,9 +254,6 @@ def btn3cmd():
     page_combobox2.current(0)
     page_combobox2.pack(side="left",padx=7, pady=5)
 
-    
-
-
     def btncmd():
         query = keyword_txt.get()
         page1 = int(page_combobox.get()) 
@@ -372,8 +291,7 @@ def btn4cmd():
     txt_file= Text(txt_frame, height=15, yscrollcommand=scrollbar.set)
     txt_file.pack(side="left",  expand=True, fill="both")
     scrollbar.config(command=txt_file.yview)
-    txt_file.insert(END, "\n\n\n\n\n 상위 주제를 선택하시고 <상위 주제 결정> 버튼을 눌러주세요. \n\n 추가된 하위 주제와 날짜를 설정하시고 아래에 크롤링 버튼을 눌러주세요 \n\n 해당하는 기사들을 크롤링해옵니다. \n\n 새로운 상위주제로 크롤링 하고 싶다면 <주제 크롤링> 버튼을 눌러주세요"
-)    
+    txt_file.insert(END, "\n\n\n\n\n 상위 주제를 선택하시고 <상위 주제 결정> 버튼을 눌러주세요. \n\n 추가된 하위 주제와 날짜를 설정하시고 아래에 크롤링 버튼을 눌러주세요 \n\n 해당하는 기사들을 크롤링해옵니다. \n\n 새로운 상위주제로 크롤링 하고 싶다면 <주제 크롤링> 버튼을 눌러주세요")    
     
     def open_file():
         if os.path.isfile(filename): # 파일 있으면 True, 없으면 False
@@ -389,25 +307,16 @@ def btn4cmd():
     sid1_label = Label(sid_frame, text="상위주제", width=15)
     sid1_label.pack(side="left", padx=7, pady=5)
 
-    # sid1_txt = Entry(sid_frame, width=20)
-    # sid1_txt.pack(side="left", padx=7, pady=5)
-
-
-
-    # sid2_txt = Entry(sid_frame, width=20)
-    # sid2_txt.pack(side="left", padx=7, pady=5)
-    
-    sid1_values = ["정치", "경제", "사회", "생활문화", "세계", "IT과학"]
-    정치_values = ["청와대", "국회정당", "북한", "행정", "국방외교", "정치일반"]
-    경제_values = ["금융", "증권", "산업재계", "중기벤처", "부동산", "글로벌경제", "생활경제", "경제일반"]
-    사회_values = ["사건사고", "교육", "노동", "언론", "환경", "인권복지", "식품의료", "지역", "인물", "사회일반"]
-    생활문화_values = ["건강정보", "자동차시승기", "도로교통", "여행레저", "음식맛집", "패션뷰티", "공연전시", "책", "종교", "날씨", "생활문화 일반"]
-    세계_values = ["아시아호주", "미국중남미", "유럽", "중동아프리카", "세계 일반"]
-    IT과학_values = ["모바일", "인터넷SNS", "통신","뉴미디어", "IT 일반", "보안해킹", "컴퓨터", "게임리뷰", "과학 일반"]
+    sid1_values = ["정치", "경제", "사회", "생활/문화", "세계", "IT/과학"]
+    정치_values = ["청와대", "국회/정당", "북한", "행정", "국방/외교", "정치 일반"]
+    경제_values = ["금융", "증권", "산업/재계", "중기/벤처", "부동산", "글로벌 경제", "생활 경제", "경제 일반"]
+    사회_values = ["사건사고", "교육", "노동", "언론", "환경", "인권/복지", "식품/의료", "지역", "인물", "사회 일반"]
+    생활문화_values = ["건강정보", "자동차/시승기", "도로/교통", "여행/레저", "음식/맛집", "패션/뷰티", "공연/전시", "책", "종교", "날씨", "생활문화 일반"]
+    세계_values = ["아시아/호주", "미국/중남미", "유럽", "중동/아프리카", "세계 일반"]
+    IT과학_values = ["모바일", "인터넷/SNS", "통신/뉴미디어", "IT 일반", "보안/해킹", "컴퓨터", "게임/리뷰", "과학 일반"]
 
     sid1_combobox = ttk.Combobox(sid_frame,width=15 ,height=5, values=sid1_values,state="readonly")
     sid1_combobox.pack(side="left", padx=7, pady=5)
-      
     
     def sidcmd():
         sid2_label = Label(sid_frame, text="하위주제", width=15)
@@ -425,7 +334,7 @@ def btn4cmd():
             VALUES = 사회_values
             sid2_combobox = ttk.Combobox(sid_frame,width=15 ,height=5, values=VALUES,state="readonly")
             sid2_combobox.pack(side="left", padx=7, pady=5)
-        elif sid1_combobox.get() == "생활문화":
+        elif sid1_combobox.get() == "생활/문화":
             VALUES = 생활문화_values
             sid2_combobox = ttk.Combobox(sid_frame,width=15 ,height=5, values=VALUES,state="readonly")
             sid2_combobox.pack(side="left", padx=7, pady=5)
@@ -433,7 +342,7 @@ def btn4cmd():
             VALUES = 세계_values
             sid2_combobox = ttk.Combobox(sid_frame,width=15 ,height=5, values=VALUES,state="readonly")
             sid2_combobox.pack(side="left", padx=7, pady=5)
-        elif sid1_combobox.get() == "IT과학":
+        elif sid1_combobox.get() == "IT/과학":
             VALUES = IT과학_values
             sid2_combobox = ttk.Combobox(sid_frame,width=15 ,height=5, values=VALUES,state="readonly")
             sid2_combobox.pack(side="left", padx=7, pady=5)
@@ -447,8 +356,6 @@ def btn4cmd():
                 scrape_news(sid1, sid2, date)   #뉴스 정보 가져오기
                 open_file()
                 fin()
-            
-        
             
         input_frame = LabelFrame(root)
         input_frame.pack(fill="x", padx=7, pady=5)
@@ -477,9 +384,6 @@ def btn4cmd():
 
         day_label = Label(input_frame, text="일", width=8)
         day_label.pack(side="left", padx=5, pady=5)
-            
-
-                
 
         # 크롤링 버튼
         btn_frame = Frame(root)
@@ -491,11 +395,13 @@ def btn4cmd():
         
     sid_btn = Button(sid_frame, text="상위 주제 결정", command=sidcmd)
     sid_btn.pack(side="left")
+
 def btn5cmd():
     clear()
     initial_button()
     time_label = Label(root, text = "현재 시각 {}.{}.{} {}:{}:{}".format(time.tm_year, time.tm_mon, time.tm_mday, time.tm_hour, time.tm_min, time.tm_sec))
     time_label.pack()
+
     def change():
         time_label.config(text = "크롤링을 진행한 시각 {}.{}.{} {}:{}:{}".format(time.tm_year, time.tm_mon, time.tm_mday, time.tm_hour, time.tm_min, time.tm_sec))
     txt_frame = Frame(root)
@@ -549,7 +455,6 @@ def btn5cmd():
             open_file()
             fin()
          
-
     # 크롤링 버튼
     btn_frame = Frame(root)
     btn_frame.pack(fill="x", padx=7, pady=10)
@@ -558,14 +463,10 @@ def btn5cmd():
     btn1 = Button(btn_frame, text="크롤링",height=5, width=15, command=btncmd)
     btn1.pack()
 
-
-    
-
-
-
 # 현재 시간 레이블
 time_label = Label(root, text = "현재 시각 {}.{}.{} {}:{}:{}".format(time.tm_year, time.tm_mon, time.tm_mday, time.tm_hour, time.tm_min, time.tm_sec))
 time_label.pack()
+
 # 처음 화면 구성 
 initial_state()
 
