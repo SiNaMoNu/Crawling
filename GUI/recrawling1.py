@@ -49,7 +49,7 @@ def rescrape_news_keyword(KEYWORD, PAGE):
                         press.append(press_pick)
                     
                     
-                    file.write("{}. {}".format(index+1, title) + "\n")
+                    file.write("{}".format(title) + "\n")
         elif PAGE > 1 :
             url = "https://search.naver.com/search.naver?where=news&sm=tab_pge&query=" + KEYWORD + "&sort=0&photo=0&field=0&pd=0&ds=&de=&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:r,p:all,a:all&start=1"  
 
@@ -64,7 +64,7 @@ def rescrape_news_keyword(KEYWORD, PAGE):
                     press.append(press_pick)
                     
                     
-                file.write("{}. {}".format(index+1, title) + "\n")
+                    file.write("{}".format(title) + "\n")
 
             page_index = 10
                 
@@ -82,12 +82,12 @@ def rescrape_news_keyword(KEYWORD, PAGE):
 
                     page_index = page_index + 1
 
-                    file.write("{}. {}".format(index+1, title) + "\n")
+                    file.write("{}".format(title) + "\n")
                 
 def morpheme():
     okt=Okt()
     word_dic={}
-    f=open("크롤링.txt", 'r')
+    f=open(filename, 'r')
     g=''
     while True:
         line = f.readline()
