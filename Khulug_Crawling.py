@@ -2,10 +2,13 @@ import time
 import tkinter.ttk as ttk
 from tkinter import *
 import os
+import sys
+import re
+from konlpy.tag  import Okt
 from sid_crawling import * 
 from keyword_crawling import *
 import tkinter.messagebox as msgbox
-
+from recrawling1 import *
 
 
 root = Tk()
@@ -152,18 +155,48 @@ def btn1cmd():
     keyword_label = Label(output_frame, text="추천 키워드", width=8)
     keyword_label.pack( padx=7, pady=5)
 
-    keyword_txt = Entry(output_frame, width=40)
-    keyword_txt.pack()
+    rekeyword_txt = Entry(output_frame, width=40)
+    rekeyword_txt.pack()
+
+    def btncmd():
+        KEYWORD = keyword_txt.get()
+        PAGE = int(page_combobox.get())
+        change()
+        sys.stdout = open('크롤링.txt', 'w')
+        if __name__ == "__main__" :
+            rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
+            fin()
+        sys.stdout.close()
+        morpheme()
+        with open("결과값.txt",'r') as f:
+            text = f.read()
+            b = re.compile('[가-힣]+')
+            m = b.findall("alpha".join (text.split('\n')[0:2]))
+            a=' '.join(m) 
+            f.close()
+        rekeyword_txt.insert(a)
+        open_file() 
+
+
+    def rebtncmd():
+        KEYWORD = rekeyword_txt.get()
+        PAGE = int(page_combobox.get())
+        change()
+        if __name__ == "__main__" :
+            rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
+            fin()
+        open_file()
+
     # 크롤링 버튼
     btn_frame = Frame(root)
     btn_frame.pack(fill="x", padx=7, pady=10)
     
     #1차 크롤링 버튼
-    btn1 = Button(btn_frame, text="크롤링",height=5, width=15)
+    btn1 = Button(btn_frame, text="크롤링",height=5, width=15, command=btncmd)
     btn1.pack(side="left", padx=27)
 
     #2차 크롤링 버튼
-    btn1 = Button(btn_frame, text="재 크롤링",height=5, width=15)
+    btn1 = Button(btn_frame, text="재 크롤링",height=5, width=15, command=rebtncmd)
     btn1.pack(side="right", padx=27)
 
     
