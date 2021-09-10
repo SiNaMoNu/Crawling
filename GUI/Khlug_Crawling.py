@@ -165,14 +165,39 @@ def btn1cmd():
         if __name__ == "__main__" :
             rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
             fin()
-        morpheme()
+        okt=Okt()
+        word_dic={}
+        f=open(filename, 'r')
+        g=''
+        while True:
+            line = f.readline()
+            line = line.replace(line.split(' ')[0]+' ','')
+            if not line: break
+            g+=line
+        f.close()
+
+        g = okt.pos(g)
+        for taeso, pumsa in g:
+            if pumsa == "Noun":
+                if not (taeso in word_dic):
+                    word_dic[taeso] = 0
+                word_dic[taeso]+=1
+
+        a, number = '', 1
+        keys = sorted(word_dic.items(), key=lambda x:x[1], reverse=True)
+        for word, count in keys[:50]:
+            a += "{0}. {1}({2})\n".format(number,word, count)
+            number+=1
+        f = open("결과값.txt", 'w')
+        f.write(a)
+        f.close()
         with open("결과값.txt",'r') as f:
             text = f.read()
             b = re.compile('[가-힣]+')
             m = b.findall("alpha".join (text.split('\n')[0:2]))
             a=' '.join(m) 
             f.close()
-        rekeyword_txt.insert("{}".format(a))
+        rekeyword_txt.insert(a)
         open_file() 
 
 
