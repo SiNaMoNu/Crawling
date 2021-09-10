@@ -20,12 +20,6 @@ filename = "keyword.txt"
 def fin():
     msgbox.showinfo("알림", "크롤링이 끝났습니다.")
 
-def warn_sid1():
-    msgbox.showwarning("경고", "잘못된 상위주제를 입력하셨습니다.")
-
-def warn_sid2():
-    msgbox.showwarning("경고", "잘못된 하위주제를 입력하셨습니다.")
-
 def clear():
     mylist = root.pack_slaves()
     for i in mylist:
