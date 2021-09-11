@@ -3,6 +3,8 @@
 
 > 팀명 : 크롱크롱 크롤링
 
+[쿠러그 그룹 페이지](https://khlug.org/group/75683)
+
 ## Requirement
 * Python (3.8.x)    
 * pip
@@ -31,10 +33,21 @@
 
     pip install openpyxl
 
-**konlpy**
+**Konlpy**
 
     pip install konlpy
 
 **JPype1**
 
     pip install "JPype1<1.1"
+
+## Member
+경희대학교 응용물리학과 21 박승범
+
+경희대학교
+
+경희대학교
+
+경희대학교
+## License
+[MIT License](https://choosealicense.com/licenses/mit/)
