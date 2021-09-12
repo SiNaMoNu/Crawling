@@ -53,6 +53,7 @@ def scrape_news_keyword(KEYWORD, PAGE):
             page_index = 10
                 
             for i in range(1, PAGE) :
+                url = "https://search.naver.com/search.naver?where=news&sm=tab_pge&query=" + KEYWORD + "&sort=0&photo=0&field=0&pd=0&ds=&de=&mynews=0&office_type=0&office_section_code=0&news_office_checked=&nso=so:r,p:all,a:all&start=" + str(i) + "1"
                 soup = create_soup(url)
                 news_list = soup.find("ul", attrs={"class":"list_news"}).find_all("li", attrs={"class":"bx"})   # 관련 기사가 있을 경우 <li class="sub_bx"> 가 존재하므로 attrs={"class":"bx"} 를 추가하여 메인 기사의 정보가 담겨있는 li 태그만 찾도록 하였다.
                 for index , news in enumerate(news_list) :
