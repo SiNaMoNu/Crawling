@@ -3,11 +3,7 @@ from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 import collections
 
-# 아래는 matplotlib 한글 깨짐 방지
-import platform
-if platform.system() == 'Darwin': #맥
-        plt.rc('font', family='AppleGothic') 
-plt.rcParams['axes.unicode_minus'] = False #한글 폰트 사용시 마이너스 폰트 깨짐 해결
+
 
 
 # user agent를 입력해야 함
@@ -37,15 +33,15 @@ def firstlastscrape(query,page1 ,page2):
             office_list.append(m)
 
     # 여기서부터는 시각화 과정
-        dict1 = {}
-        dict1 = collections.Counter(office_list)
+    dict1 = {}
+    dict1 = collections.Counter(office_list)
 
 
-        office_name = list(dict1)
-        office_value = list(dict1.values())
+    office_name = list(dict1)
+    office_value = list(dict1.values())
 
 
-        plt.pie(office_value, labels=office_name, autopct='%.1f%%')
-        plt.legend(office_name, loc =(1.15, 0.0))
-        plt.title(f"검색어 '{query}' 입력 시 언론사 비율 ")
-        plt.show()
+    plt.pie(office_value, labels=office_name, autopct='%.1f%%')
+    plt.legend(office_name, loc =(1.15, 0.0))
+    plt.title(f"검색어 '{query}' 입력 시 언론사 비율 ")
+    plt.show()
