@@ -110,6 +110,69 @@ def btn1cmd():
     rekeyword_txt = Entry(output_frame, width=40)
     rekeyword_txt.pack()
     
+    def btncmd():
+        KEYWORD = keyword_txt.get()
+        PAGE = int(page_combobox.get())
+        change()
+        if __name__ == "__main__" :
+            rescrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
+            fin()
+        okt=Okt()
+        word_dic={}
+        f=open(filename, 'r', encoding="utf8")
+        g=''
+        while True:
+            line = f.readline()
+            line = line.replace(line.split(' ')[0]+' ','')
+            if not line: break
+            g+=line
+        f.close()
+
+        g = okt.pos(g)
+        for taeso, pumsa in g:
+            if pumsa == "Noun":
+                if not (taeso in word_dic):
+                    word_dic[taeso] = 0
+                word_dic[taeso]+=1
+
+        a, number = '', 1
+        keys = sorted(word_dic.items(), key=lambda x:x[1], reverse=True)
+        for word, count in keys[:50]:
+            a += "{0}. {1}({2})\n".format(number,word, count)
+            number+=1
+        f = open("결과값.txt", 'w', encoding="utf8")
+        f.write(a)
+        f.close()
+        with open("결과값.txt",'r', encoding="utf8") as f:
+            text = f.read()
+            b = re.compile('[가-힣]+')
+            m = b.findall("alpha".join (text.split('\n')[0:2]))
+            a=' '.join(m) 
+            f.close()
+        rekeyword_txt.insert(END, a)
+        open_file() 
+
+
+    def rebtncmd():
+        KEYWORD = rekeyword_txt.get()
+        PAGE = int(page_combobox.get())
+        change()
+        if __name__ == "__main__" :
+            scrape_news_keyword(KEYWORD, PAGE)   #뉴스 정보 가져오기
+            open_file()
+            fin()
+
+    # 크롤링 버튼
+    btn_frame = Frame(root)
+    btn_frame.pack(fill="x", padx=7, pady=10)
+    
+    #1차 크롤링 버튼
+    btn1 = Button(btn_frame, text="크롤링",height=5, width=15, command=btncmd)
+    btn1.pack(side="left", padx=27)
+
+    #2차 크롤링 버튼
+    btn2 = Button(btn_frame, text="재 크롤링",height=5, width=15, command=rebtncmd)
+    btn2.pack(side="right", padx=27)
 def btn2cmd():
     clear()
     initial_button()
