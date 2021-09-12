@@ -15,7 +15,7 @@ root = Tk()
 root.title("CRAWLING GUI") 
 root.geometry("640x740+700+200")
 root.resizable(False, False) # 너비, 높이 값 변경 불가 -> 창 크기 변경 불가, 최소화도 안됨
-sys.setrecursionlimit(10000000000000000)
+sys.setrecursionlimit(1000000)
 
 filename = "keyword.txt"
 
