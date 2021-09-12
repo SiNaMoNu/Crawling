@@ -33,15 +33,15 @@ def firstlastscrape(query,page1 ,page2):
             office_list.append(m)
 
     # 여기서부터는 시각화 과정
-        dict1 = {}
-        dict1 = collections.Counter(office_list)
+    dict1 = {}
+    dict1 = collections.Counter(office_list)
 
 
-        office_name = list(dict1)
-        office_value = list(dict1.values())
+    office_name = list(dict1)
+    office_value = list(dict1.values())
 
 
-        plt.pie(office_value, labels=office_name, autopct='%.1f%%')
-        plt.legend(office_name, loc =(1.15, 0.0))
-        plt.title(f"검색어 '{query}' 입력 시 언론사 비율 ")
-        plt.show()
+    plt.pie(office_value, labels=office_name, autopct='%.1f%%')
+    plt.legend(office_name, loc =(1.15, 0.0))
+    plt.title(f"검색어 '{query}' 입력 시 언론사 비율 ")
+    plt.show()
