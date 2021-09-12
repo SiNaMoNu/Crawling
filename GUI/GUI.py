@@ -259,7 +259,7 @@ def btn3cmd():
     txt_file= Text(txt_frame, height=15, yscrollcommand=scrollbar.set)
     txt_file.pack(side="left",  expand=True, fill="both")
     scrollbar.config(command=txt_file.yview)
-    txt_file.insert(END, " \n\n\n\n\n\n 키워드를 입력해주시고 크롤링을 시작할 페이지와 마지막 페이지를 설정해주세요. \n\n <크롤링 & 시각화> 버튼을 누르면 크롤링 내용을 csv 파일로 저장합니다. \n\n 이 중 언론사의 비율을 시각화해서 나타내줍니다.")    
+    txt_file.insert(END, " \n\n\n\n\n\n 키워드를 입력해주시고 크롤링을 시작할 페이지와 마지막 페이지를 설정해주세요. \n\n <크롤링 & 시각화> 버튼을 누르면 크롤링을 진행 후 언론사의 비율을 시각화해서 나타내줍니다.")    
 
     Label(root, text="< 크롤링 결과 csv로 저장 후 언론사별 시각화 >").pack()
 
