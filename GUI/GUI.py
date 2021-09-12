@@ -3,6 +3,7 @@ import sys
 import tkinter.ttk as ttk
 from tkinter import *
 import os
+import re
 import tkinter.messagebox as msgbox
 import platform
 from Crawling_Theme import * 
