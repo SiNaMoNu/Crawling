@@ -50,8 +50,9 @@
 
 경희대학교 사회기반시스템공학과 21 이지환
 
-경희대학교 
+경희대학교 원자력 공학과 21 정은성
 
-경희대학교 지리학과 19 
+경희대학교 지리학과 19 남현우
+
 ## License
 [MIT License](https://choosealicense.com/licenses/mit/)
