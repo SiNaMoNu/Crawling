@@ -3,7 +3,11 @@ from bs4 import BeautifulSoup
 import matplotlib.pyplot as plt
 import collections
 
-
+# 아래는 matplotlib 한글 깨짐 방지
+import platform
+if platform.system() == 'Darwin': #맥
+        plt.rc('font', family='AppleGothic') 
+plt.rcParams['axes.unicode_minus'] = False #한글 폰트 사용시 마이너스 폰트 깨짐 해결
 
 
 # user agent를 입력해야 함
