@@ -9,10 +9,8 @@ if platform.system() == 'Darwin': #맥
         plt.rc('font', family='AppleGothic') 
 plt.rcParams['axes.unicode_minus'] = False #한글 폰트 사용시 마이너스 폰트 깨짐 해결
 
-
 # user agent를 입력해야 함
 headers = {"User-Agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/90.0.4430.229 Whale/2.10.123.42 Safari/537.36"}
-
 
 # 크롤링 과정, 기사는 최신순으로 정렬되어 있음
 def firstlastscrape(query,page1 ,page2):
@@ -24,7 +22,6 @@ def firstlastscrape(query,page1 ,page2):
         res.raise_for_status()
         soup = BeautifulSoup(res.text, "lxml")
 
-        
         news_area = soup.find_all("div", attrs={"class":"news_area"})
         for i in news_area:
             press = i.find("a", attrs={"class":"info press"}).stripped_strings
@@ -40,10 +37,8 @@ def firstlastscrape(query,page1 ,page2):
     dict1 = {}
     dict1 = collections.Counter(office_list)
 
-
     office_name = list(dict1)
     office_value = list(dict1.values())
-
 
     plt.pie(office_value, labels=office_name, autopct='%.1f%%')
     plt.legend(office_name, loc =(1.15, 0.0))
