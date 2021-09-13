@@ -1,11 +1,10 @@
 import time
-import sys
 import tkinter.ttk as ttk
 from tkinter import *
 import os
-import re
 import tkinter.messagebox as msgbox
 import platform
+import re
 from Crawling_Theme import * 
 from Crawling_Keyword import *
 from Recrawling import *
@@ -16,7 +15,6 @@ root = Tk()
 root.title("CRAWLING GUI") 
 root.geometry("640x740+700+200")
 root.resizable(False, False) # 너비, 높이 값 변경 불가 -> 창 크기 변경 불가, 최소화도 안됨
-sys.setrecursionlimit(1000000)
 
 filename = "keyword.txt"
 
@@ -31,10 +29,10 @@ def clear():
 def initial_state():
     def change():
         time_label.config(text = "크롤링을 진행한 시각 {}.{}.{} {}:{}:{}".format(time.tm_year, time.tm_mon, time.tm_mday, time.tm_hour, time.tm_min, time.tm_sec))
-    first_frame = LabelFrame(root, height=30)
+    first_frame = LabelFrame(root, height=20)
     first_frame.pack(fill="x",  padx=10, pady=10)
 
-    first_label = Label(first_frame, text="기능을 선택해주십시오", height=30, font=20)
+    first_label = Label(first_frame, text="기능을 선택해주십시오", height=20, font=20)
     first_label.pack()
     initial_button()
     change()
@@ -80,6 +78,13 @@ def btn1cmd():
     scrollbar.config(command=txt_file.yview)
     txt_file.insert(END," \n\n\n\n 원하는 키워드를 입력하시고 크롤링 버튼을 눌러주시면 1차 크롤링이 진행됩니다. \n\n 크롤링된 기사들의 제목을 바탕으로 연관된 추천키워드를 제시합니다. \n\n 재크롤링 버튼을 눌러주시면 추천키워드로 재크롤링이 진행됩니다.")
     
+    def open_file():
+        if os.path.isfile(filename): # 파일 있으면 True, 없으면 False
+             with open(filename, "r", encoding="utf8") as file:
+                 txt_file.delete("1.0", END) # 텍스트 위젯 본문 삭제
+                 txt_file.insert(END, file.read())
+    Label(root, text="<연관 키워드 추출 후 재크롤링>").pack()
+
     input_frame = LabelFrame(root)
     input_frame.pack(fill="x", padx=7, pady=10)
 
@@ -166,7 +171,7 @@ def btn1cmd():
     # 크롤링 버튼
     btn_frame = Frame(root)
     btn_frame.pack(fill="x", padx=7, pady=10)
-    
+
     #1차 크롤링 버튼
     btn1 = Button(btn_frame, text="크롤링",height=5, width=15, command=btncmd)
     btn1.pack(side="left", padx=27)
@@ -174,6 +179,7 @@ def btn1cmd():
     #2차 크롤링 버튼
     btn2 = Button(btn_frame, text="재 크롤링",height=5, width=15, command=rebtncmd)
     btn2.pack(side="right", padx=27)
+
 def btn2cmd():
     clear()
     initial_button()
@@ -262,7 +268,7 @@ def btn3cmd():
     scrollbar.config(command=txt_file.yview)
     txt_file.insert(END, " \n\n\n\n\n\n 키워드를 입력해주시고 크롤링을 시작할 페이지와 마지막 페이지를 설정해주세요. \n\n <크롤링 & 시각화> 버튼을 누르면 크롤링을 진행 후 언론사의 비율을 시각화해서 나타내줍니다.")    
 
-    Label(root, text="< 크롤링 결과 csv로 저장 후 언론사별 시각화 >").pack()
+    Label(root, text="< 크롤링 후 언론사별 시각화 >").pack()
 
     input_frame = LabelFrame(root, text="언론사 시각화")
     input_frame.pack(fill="x", padx=7, pady=5)
@@ -511,4 +517,4 @@ time_label.pack()
 # 처음 화면 구성 
 initial_state()
 
-root.mainloop()    
+root.mainloop()
